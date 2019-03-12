@@ -3,10 +3,11 @@ require('dotenv').config({
 })
 
 module.exports = {
-  host: process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  // (OR) is necessary here because sequelize db:migrate doesnt read .env files
+  host: process.env.DB_HOST || 'localhost',
+  username: process.env.DB_USER || 'docker',
+  password: process.env.DB_PASS || 'docker',
+  database: process.env.DB_NAME || 'bike_delivery',
   // if not set, use postgres
   dialect: process.env.DB_DIALECT || 'postgres',
   // SQLite DB for tests
