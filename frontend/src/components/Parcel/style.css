@@ -1,0 +1,66 @@
+.biker-container {
+  display: grid;
+  grid-template-columns: 1fr 414px 1fr;
+}
+
+.biker-wrapper {
+  grid-column: 2;
+}
+
+.screen-title {
+  width: 100%;
+  height: 51px;
+  background-color: #FECD1A;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.yellow-box {
+  margin-top: 16px;
+  width: 100%;
+  height: 295px;
+  background-color: #FECD1A;
+  border-radius: 20px;
+  display: grid;
+  grid-template-rows: 40px 20px 1fr;
+  align-items: center;
+}
+
+.parcel-id {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.parcel-assigned-to {
+  font-weight: 400;
+  font-size: 10px;
+}
+
+.parcel-detailed-info {
+  font-size: 14px;
+  align-self: start;
+  justify-self: start;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: left;
+  line-height: 2;
+}
+
+.parcel-detail-buttons button {
+  font-size: 13px;
+  width: 170px;
+  height: 32px;
+}
+.button-start {
+	background-color: #242C34;
+}
+
+.button-end {
+  background-color: #F4F4F4;
+  color: #242C34;
+}

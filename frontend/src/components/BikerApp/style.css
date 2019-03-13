@@ -1,0 +1,143 @@
+.biker-container {
+  display: grid;
+  grid-template-columns: 1fr 414px 1fr;
+}
+
+.biker-wrapper {
+  grid-column: 2;
+  background-color: white;
+}
+
+.screen-title {
+  width: 100%;
+  height: 51px;
+  background-color: #FECD1A;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.biker-wrapper .logo {
+  margin-top: 40px;
+}
+
+/* general-stats */
+.general-stats {
+  width: 100%;
+  height: 67px;
+  background-color: #F4F4F4;
+  border-radius: 0 0px 40px 40px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.general-stats .today {
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+
+.general-stats ul {
+  list-style: none;
+}
+
+.general-stats ul li {
+  display: inline;
+  font-size: 10px;
+  margin-right: 15px;
+}
+
+.general-stats .big-number {
+  font-size: 30px;
+}
+
+/* info-stats */
+
+.info-status {
+  margin-top: 16px;
+  margin-left: 10px;
+  font-size: 14px;  
+}
+
+.info-status ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+
+}
+
+.info-status ul li {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.info-status span {
+  display: block;
+  margin-right: 5px;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.info-status span.box-color-yellow {
+  background-color: #FECD1A;
+}
+
+.info-status span.box-color-black {
+  background-color: #242C34;
+}
+
+.info-status span.box-color-green {
+  background-color: #30FEBE;
+}
+
+.info-status span.box-color-grey {
+  background-color: #F4F4F4;
+}
+
+.parcel-item {
+  width: 100%;
+  height: 57px;
+  background-color: #30FEBE;
+  color: #242C34;
+  margin-top: 16px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  font-weight: 700;
+}
+
+.parcel-address {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin: 10px;
+  text-align: left;
+  grid-gap: 10px;
+}
+
+.parcel-address {
+  font-weight: 400;
+}
+
+.load-more button {
+  width: 140px;
+  height: 32px;
+  font-size: 13px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  height: 42px;
+  background-color: #30FEBE;
+  font-size: 14px;
+}

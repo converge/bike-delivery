@@ -1,0 +1,29 @@
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 414px 1fr;
+}
+
+.login-wrapper {
+  grid-column: 2;
+  height: 736px;
+  background-color: white;
+  background-image: url('../../imgs/bike-montains.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.login-wrapper .logo {
+  padding-top: 108px;
+}
+
+.login-form {
+  margin-top: 40px;
+}
+
+.login-form input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid #BCBCBC;
+}
