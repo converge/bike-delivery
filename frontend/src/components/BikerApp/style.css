@@ -1,11 +1,12 @@
 .biker-container {
   display: grid;
-  grid-template-columns: 1fr 414px 1fr;
+  grid-template-columns: 1fr minmax(414px, 1200px) 1fr;
 }
 
 .biker-wrapper {
   grid-column: 2;
   background-color: white;
+  display: grid;
 }
 
 .screen-title {
@@ -27,12 +28,13 @@
 
 /* general-stats */
 .general-stats {
-  width: 100%;
+  width: 414px;
   height: 67px;
   background-color: #F4F4F4;
   border-radius: 0 0px 40px 40px;
   font-weight: 700;
   font-size: 14px;
+  justify-self: center;
 }
 
 .general-stats .today {
@@ -140,4 +142,48 @@
   height: 42px;
   background-color: #30FEBE;
   font-size: 14px;
+}
+
+/*
+* Responsive
+*/
+
+/*
+ * tablet and mobile landscape
+ */
+@media (min-width: 640px) {
+  .general-stats {
+    width: 508px;
+  }
+  .screen-title {
+    width: 100%;
+    height: 98px;
+    border-radius: 40px 40px 0 0;  
+    background-color: #FECD1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+/*
+ * desktop 
+ */
+@media (min-width: 768px) {
+
+}
+
+/*
+ * desktop 
+ */
+@media (min-width: 1024px) {
+}
+
+/*
+ * desktop WIDE
+ */
+@media (min-width: 1250px) {
 }

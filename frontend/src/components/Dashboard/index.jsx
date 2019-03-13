@@ -1,16 +1,36 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import BikeDeliveryLogo from '../../imgs/bike-delivery-logo.png'
-import ParcelItem from '../Parcel/parcelItem'
-import ParcelDetail from '../Parcel/parcelDetail'
+import AdminParcelItem from '../Parcel/adminParcelItem'
+import AdminParcelDetail from '../Parcel/adminParcelDetail'
 import './style.css'
+import api from '../../services/api'
 
 class Dashboard extends Component {
-  render() {
+
+  state = {
+    parcels: []
+  }
+
+  componentDidMount = async () => {
+    // retrieve data from API
+    const response = await api.get('/admin/list_parcels')
+    // if success, update the component state
+    if (response.status === 200) {
+      this.setState({
+        parcels: response.data
+      })
+    }
+  }
+
+  render(
+  ) {
     return (
       <div className="dashboard-container">
         <div className="bike-delivery-logo">
-          <img src={BikeDeliveryLogo} alt="Bike Delivery Logo" />
+          <Link to='/'>
+            <img src={BikeDeliveryLogo} alt="Bike Delivery Logo" />
+          </Link>
         </div>
         <div className="dashboard-wrapper">
           <div className="content-title">PARCELS MANAGER</div>
@@ -33,8 +53,8 @@ class Dashboard extends Component {
             </ul>
           </div>
           <Switch>
-            <Route path='/' exact component={ParcelItem} />
-            <Route path='/parceldetail' exact component={ParcelDetail} />
+            <Route path='/' exact render={(props) => <AdminParcelItem {...props} parcels={this.state.parcels} />} />
+            <Route path='/parceldetail/:id' exact component={AdminParcelDetail} />
           </Switch>
           <footer>
             <div className="footer-image">

@@ -12,10 +12,10 @@ class Routes extends Component {
       <div>
         <Switch>
           <Route path='/' exact component={Dashboard} />
-          <Route path='/parceldetail' exact component={Dashboard} />
+          <Route path='/parceldetail/:id' exact component={Dashboard} />
           <Route path='/auth/login' exact component={Login} />
           <Route path='/biker' exact component={BikerApp} />
-          <Route path='/biker/parceldetail' exact component={BikerApp} />
+          <Route path='/biker/parceldetail/:id' exact component={BikerApp} />
           
           <Route component={Login} />
         </Switch>

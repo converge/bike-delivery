@@ -23,6 +23,45 @@
   color: #61dafb;
 }
 
+/* Global Styles */
+.parcel-item.waiting {
+  background-color: #FECD1A;
+}
+
+.parcel-item.assigned {
+  background-color: #242C34;
+  color: white;
+}
+
+.parcel-item.pickedup {
+  background-color: #30FEBE;
+}
+
+.parcel-item.delivered {
+  background-color: #F4F4F4;
+}
+
+.parcel-id.assigned a {
+  color: white;
+}
+
+.detail-box.waiting {
+  background-color: #FECD1A;
+}
+
+.detail-box.assigned {
+  background-color: #242C34;
+  color: white;
+}
+
+.detail-box.pickedup {
+  background-color: #30FEBE;
+}
+
+.detail-box.delivered {
+  background-color: #F4F4F4;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

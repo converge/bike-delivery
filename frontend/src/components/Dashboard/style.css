@@ -1,15 +1,14 @@
 .dashboard-container {
   display: grid;
-  grid-template-columns: 1fr 1200px 1fr;
-  /* grid-template-row: 1fr 1fr; */
+  grid-template-columns: 1fr minmax(414px, 1200px) 1fr;  
 }
 
 .dashboard-wrapper {
   grid-column: 2;
   background-color: white;
   width: 100%;
-  min-height: 600px;
   border-radius: 40px 40px 0 0;
+  display: grid;
 }
 
 .bike-delivery-logo {
@@ -29,6 +28,14 @@
   color: white;
   font-size: 24px;
   font-weight: 700;
+}
+
+.parcel-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 30px;
+  grid-column-gap: 40px;
+  grid-row-gap: 10px;
 }
 
 .footer-image {

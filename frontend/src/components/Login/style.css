@@ -1,7 +1,7 @@
 
 .login-container {
   display: grid;
-  grid-template-columns: 1fr 414px 1fr;
+  grid-template-columns: 1fr minmax(414px, 1200px) 1fr;
 }
 
 .login-wrapper {
@@ -27,3 +27,54 @@
   background: transparent;
   border-bottom: 1px solid #BCBCBC;
 }
+
+/*
+  * Responsive
+  */
+
+/*
+ * tablet and mobile landscape
+ */
+@media (min-width: 640px) {
+  .login-container {
+    grid-template-rows: minmax(25px, 50px) 633px minmax(25px, 50px);
+  }
+
+  .login-wrapper {
+    border-radius: 40px;
+    height: 633px;
+    grid-row: 2;
+    background: url('../../imgs/bike-montains-desktop.svg') #fff;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  }
+  .login-box {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-right: 130px;
+  }
+  .logo {
+    margin-right: 30px;
+  }
+}
+
+/*
+ * desktop 
+ */
+@media (min-width: 768px) {
+
+}
+
+/*
+ * desktop 
+ */
+@media (min-width: 1024px) {
+}
+
+/*
+ * desktop WIDE
+ */
+@media (min-width: 1250px) {
+}
+

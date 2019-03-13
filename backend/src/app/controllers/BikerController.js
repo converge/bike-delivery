@@ -8,7 +8,7 @@ class BikerController {
    */
   async listParcels(req, res) {
     try {
-      const { userId } = req.body
+      const { userId } = req.query
       const parcel = await Parcel.findAll(
         {
           where: {
@@ -22,21 +22,39 @@ class BikerController {
   }
 
   /*
+   * Retrieve information about a specific parcel
+   * params: parcelId, userId
+   */
+  async parcelDetail(req, res) {
+    try {
+      const { parcelId, userId } = req.query
+      const parcel = await Parcel.findOne({ where: {
+        id: parcelId,
+        user_id: userId
+      }})
+      return res.json(parcel)
+    } catch (err) {
+      return res.json(err)
+    }
+  }
+
+  /*
    * Active/Set a parcel to a biker
    * params: parcelId
    */
-  async pickUpParcel(req, res) {
+  async startDelivery(req, res) {
     try {
-      const { parcelId } = req.body
-      const parcel = await Parcel.update({
+      const now = new Date()
+      const { parcelId } = req.body.params
+      await Parcel.update({
         status: 'pickedup',
-        delivery_start: new Date(),
+        delivery_start: now,
       }, {
         where: {
           id: parcelId
         }
       })
-      return res.json(parcel)
+      return res.json(now)
     } catch (err) {
       return res.json(err)
     }
@@ -46,16 +64,17 @@ class BikerController {
    * Delivery end, when delivery arrived the destiny
    * params: parcelId
    */
-  async deliveryEnd(req, res) {
+  async endDelivery(req, res) {
+    const now = new Date()
     try {
-      const { parcelId } = req.body
-      const parcel = await Parcel.update({
+      const { parcelId } = req.body.params
+      await Parcel.update({
         status: 'delivered',
-        delivery_end: new Date()
+        delivery_end: now
       }, { where: {
         id: parcelId
       }})
-      return res.json(parcel)
+      return res.json(now)
     } catch (err) {
       return res.json(err)
     }

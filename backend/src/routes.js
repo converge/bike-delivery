@@ -6,15 +6,19 @@ const BikerController = require('./app/controllers/BikerController')
 // Admin routes
 routes.post('/admin', AdminController.store)
 routes.get('/admin/list_parcels', AdminController.listParcels)
-routes.put('/assign_parcel_to_biker', AdminController.assignParcelToBiker)
+routes.get('/admin/parcel_detail', AdminController.parcelDetail)
+routes.put('/admin/assign_parcel_to_biker', AdminController.assignParcelToBiker)
+routes.put('/admin/unassign_parcel_to_biker', AdminController.unassignParcelToBiker)
+routes.get('/admin/list_all_bikers', AdminController.listAllBikers)
 // Admin special routes
-routes.post('/populate_users', AdminController.populateUsers)
-routes.delete('/delete_users', AdminController.deleteUsers)
+routes.post('/admin/populate_users', AdminController.populateUsers)
+routes.delete('/admin/delete_users', AdminController.deleteUsers)
 
 // Biker routes
 routes.get('/biker/list_parcels', BikerController.listParcels)
-routes.put('/biker/pickup_parcel', BikerController.pickUpParcel)
-routes.put('/biker/delivery_end', BikerController.deliveryEnd)
+routes.get('/biker/parcel_detail', BikerController.parcelDetail)
+routes.put('/biker/start_delivery', BikerController.startDelivery)
+routes.put('/biker/end_delivery', BikerController.endDelivery)
 
 // Authentication middleware
 // routes.use(authMiddleware)

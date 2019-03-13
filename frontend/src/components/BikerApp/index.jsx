@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import BikeDeliveryLogo from '../../imgs/bike-delivery-logo.png'
-import ParcelItem from '../Parcel/parcelItem'
-import ParcelDetail from '../Parcel/parcelDetail'
-import { Switch, Route } from 'react-router-dom'
+import BikerParcelItem from '../Parcel/bikerParcelItem'
+import BikeParcelDetail from '../Parcel/bikerParcelDetail'
+import { Switch, Route, Link } from 'react-router-dom'
 import './style.css';
 
 
@@ -12,7 +12,9 @@ class BikerApp extends Component {
       <div className="biker-container">
         <div className="biker-wrapper">
           <div className="logo">
-            <img src={BikeDeliveryLogo} alt='Bike Delivery' />
+            <Link to='/biker'>
+              <img src={BikeDeliveryLogo} alt='Bike Delivery' />
+            </Link>
           </div>
           <div className="screen-title">
             BIKER WEBAPP
@@ -36,8 +38,8 @@ class BikerApp extends Component {
           </div>
           <article>
             <Switch>
-              <Route path='/biker' exact component={ParcelItem} />
-              <Route path='/biker/parceldetail' exact component={ParcelDetail} />
+              <Route path='/biker' exact component={BikerParcelItem} />
+              <Route path='/biker/parceldetail/:id' exact component={BikeParcelDetail} />
             </Switch>
           </article>
 

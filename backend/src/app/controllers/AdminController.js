@@ -24,7 +24,23 @@ class AdminController {
    */
   async listParcels(req, res) {
     try {
-      const parcel = await Parcel.findAll()
+      const parcel = await Parcel.findAll({order: [['id', 'DESC']]})
+      return res.json(parcel)
+    } catch (err) {
+      return res.json(err)
+    }
+  }
+
+  /*
+   * Retrieve specific parcel
+   * params: parcelId
+   */
+  async parcelDetail(req, res) {
+    const { parcelId } = req.query
+    try {
+      const parcel = await Parcel.findOne({ where: {
+        id: parcelId
+      }})
       return res.json(parcel)
     } catch (err) {
       return res.json(err)
@@ -37,16 +53,43 @@ class AdminController {
    */
   async assignParcelToBiker(req, res) {
     try {
-      const { parcelId, userId } = req.body
-      console.log(parcelId)
-      console.log(userId)
-      const parcel = Parcel.update({
+      const { parcelId, userId } = req.body.params
+      const parcel = await Parcel.update({
         status: 'assigned',
         user_id: userId
       }, { 
         where: { id: parcelId }
       })
       return res.json(parcel)
+    } catch (err) {
+      return res.json(err)
+    }
+  }
+  /*
+   * Unassign parcel to a Bike
+   * params: parcelId
+   */
+  async unassignParcelToBiker(req, res) {
+    try {
+      const { parcelId } = req.body.params
+      const parcel = await Parcel.update({
+        status: 'waiting',
+        user_id: null
+      }, { 
+        where: { id: parcelId }
+      })
+      return res.json(parcel)
+    } catch (err) {
+      return res.json(err)
+    }
+  }
+
+  async listAllBikers(req, res) {
+    try {
+      const users = await User.findAll({ where: {
+        is_admin: 0
+      }})
+      return res.json(users)
     } catch (err) {
       return res.json(err)
     }
