@@ -39,10 +39,14 @@ class ParcelItem extends Component {
                 </span>
                 <span className="parcel-address">
                   <span className="parcel-origin">
-                    <b>Origin: </b>{row.origin}
+                    <Link to={`biker/parceldetail/${row.id}`} >
+                      <b>Origin: </b>{row.origin}
+                    </Link>
                   </span>
                   <span className="parcel-destination">
-                    <b>Destination:</b> {row.destination}
+                    <Link to={`biker/parceldetail/${row.id}`} >
+                      <b>Destination:</b> {row.destination}
+                    </Link>
                   </span>
                 </span>
               </div>

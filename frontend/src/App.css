@@ -33,6 +33,11 @@
   color: white;
 }
 
+.parcel-item.assigned a {
+  background-color: #242C34;
+  color: white;
+}
+
 .parcel-item.pickedup {
   background-color: #30FEBE;
 }
