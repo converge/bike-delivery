@@ -28,10 +28,12 @@ class BikerController {
   async parcelDetail(req, res) {
     try {
       const { parcelId, userId } = req.query
-      const parcel = await Parcel.findOne({ where: {
-        id: parcelId,
-        user_id: userId
-      }})
+      const parcel = await Parcel.findOne({
+        where: {
+          id: parcelId,
+          user_id: userId
+        }
+      })
       return res.json(parcel)
     } catch (err) {
       return res.json(err)
@@ -50,10 +52,10 @@ class BikerController {
         status: 'pickedup',
         delivery_start: now,
       }, {
-        where: {
-          id: parcelId
-        }
-      })
+          where: {
+            id: parcelId
+          }
+        })
       return res.json(now)
     } catch (err) {
       return res.json(err)
@@ -71,14 +73,68 @@ class BikerController {
       await Parcel.update({
         status: 'delivered',
         delivery_end: now
-      }, { where: {
-        id: parcelId
-      }})
+      }, {
+          where: {
+            id: parcelId
+          }
+        })
       return res.json(now)
     } catch (err) {
       return res.json(err)
     }
   }
+
+
+  /*
+   * Count the amount of parcels by status and biker
+   * params: userId
+   */
+  async generalStatus(req, res) {
+    const { userId } = req.query
+    try {
+      const waiting = await Parcel.count({
+        where: {
+          status: 'waiting',
+          user_id: userId
+        }
+      })
+
+      const assigned = await Parcel.count({
+        where: {
+          status: 'assigned',
+          user_id: userId
+
+        }
+      })
+
+      const pickedup = await Parcel.count({
+        where: {
+          status: 'pickedup',
+          user_id: userId
+
+        }
+      })
+
+      const delivered = await Parcel.count({
+        where: {
+          status: 'delivered',
+          user_id: userId
+
+        }
+      })
+
+      const result = {
+        waiting,
+        assigned,
+        pickedup,
+        delivered
+      }
+      return res.json(result)
+    } catch (err) {
+      return res.json(err)
+    }
+  }
 }
+
 
 module.exports = new BikerController()

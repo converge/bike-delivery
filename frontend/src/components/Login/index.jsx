@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import BikeDeliveryLogo from '../../imgs/bike-delivery-logo.png'
+import api from '../../services/api'
+import { login } from '../../services/auth'
 import './style.css'
 
 class Dashboard extends Component {
@@ -15,54 +17,43 @@ class Dashboard extends Component {
             <div className="login-form">
               <Formik
                 initialValues={{
-                  name: '',
                   email: '',
-                  subject: '',
-                  msg: '',
+                  password: '',
                 }}
 
                 validate={values => {
                   let errors = {}
-                  if (!values.name) {
-                    errors.name = 'Name is required'
-                  } else if (!values.email) {
+                  if (!values.email) {
                     errors.email = 'E-mail is required'
                   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
                     errors.email = 'Invalid email address'
-                  } else if (!values.subject) {
-                    errors.subject = 'Subject is required'
-                  } else if (!values.msg) {
-                    errors.msg = 'The email content is empty'
+                  } else if (!values.password) {
+                    errors.msg = 'The password field is empty'
                   }
                   return errors
                 }}
 
                 onSubmit={async (values, actions) => {
                   actions.setStatus({
-                    success: 'Sending email...',
-                    css: 'sending'
+                    success: 'Login...',
+                    css: 'success'
                   })
                   actions.setSubmitting(false)
-                  // TODO: api call
-                  // const response = await api.post('/email/send_email', {
-                  //   name: values.name,
-                  //   email: values.email,
-                  //   subject: values.subject,
-                  //   msg: values.msg
-                  // })
-                  // TODO: remove it
-                  let response = { status: 200 }
-                  if (response.status === 200) {
-                    actions.setStatus({
-                      success: 'Email sent !',
-                      css: 'success'
+                  try {
+                    const response = await api.post('/auth/login', {
+                      email: values.email,
+                      password: values.password,
                     })
-                  } else {
+                    login(response.data.token)
+                    this.props.history.push("/");
+                  } catch (err) {
                     actions.setStatus({
-                      success: 'Something went wrong, email not sent !',
+                      success: 'Email or Password incorrect !',
                       css: 'error'
                     })
                   }
+
+                  
                 }}
                 render={x => (
                   <Form>

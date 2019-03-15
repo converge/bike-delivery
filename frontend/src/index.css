@@ -23,7 +23,7 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 16px;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 	vertical-align: baseline;
@@ -70,7 +70,7 @@ table {
 
 form input {
 	font-weight: 400;
-	font-size: 24px;
+	font-size: 1.4rem;
 	margin-top: 15px;
 	color: #FECD1A;
 }
@@ -88,7 +88,7 @@ button {
 	outline: none;
 	color: white;
 	font-weight: 700;
-	font-size: 24px;
+	font-size: 1rem;
 }
 
 button:hover {
@@ -98,7 +98,7 @@ button:hover {
 }
 
 a {
-	font-size: 14px;
+	font-size: 0.9rem;
 	color: black;
 	text-decoration: none;
 }

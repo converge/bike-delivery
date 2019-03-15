@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import api from '../../services/api'
+import { updateWaiting, updateAssigned } from '../../store/actions/statusActions'
+import { connect } from 'react-redux'
 
-class Dashboard extends Component {
+class AdminParcelDetail extends Component {
 
   state = {
     parcelItem: [],
@@ -63,10 +65,13 @@ class Dashboard extends Component {
         this.setState(state => ({
           parcelItem: {
             ...state.parcelItem,
-            transactionInfo: 'Parcel Assigned to a new Biker !',
             status: 'assigned'
-          }
+          },
+          transactionInfo: 'Parcel Assigned to a new Biker !',
         }))
+        // update Redux state
+        this.props.updateWaiting(-1)
+        this.props.updateAssigned(+1)
       }
     } else {
       this.setState({
@@ -86,21 +91,23 @@ class Dashboard extends Component {
       this.setState(state => ({
         parcelItem: {
           ...state.parcelItem,
-          transactionInfo: 'Parcel unassigned from biker !',
-          assignedBiker: '',
           status: 'waiting'
-        }
+        },
+        transactionInfo: 'Parcel unassigned from biker !',
+        assignedBiker: '',
       }))
+
+      // update Redux state
+      this.props.updateWaiting(-1)
+      this.props.updateAssigned(+1)
     }
   }
 
   render() {
-    console.log(this.state.parcelItem)
     return (
       <div className="parcel-detail-wrapper">
         <div className={`detail-box ${this.state.parcelItem.status}`}>
           <div className="parcel-id">#{this.state.parcelItem.id}</div>
-          {/* TODO: JOIN to get user_id */}
           <div className="parcel-assigned-to">assigned to: {this.state.assignedBiker}</div>
           <div className="parcel-detailed-info">
             <ul>
@@ -138,4 +145,10 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateWaiting: (value) => dispatch(updateWaiting(value)),
+    updateAssigned: (value) => dispatch(updateAssigned(value)),
+  }
+}
+export default connect(null, mapDispatchToProps)(AdminParcelDetail)

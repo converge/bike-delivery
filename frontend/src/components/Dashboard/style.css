@@ -11,10 +11,36 @@
   display: grid;
 }
 
-.bike-delivery-logo {
+.logo-wrapper {
   grid-column: 2;
-  justify-self: start;
+  display: grid;
+  grid-template-columns: 1fr 30px;
+}
+
+.bike-delivery-logo {
+  grid-column: 1;
   margin: 30px 0 30px 0;
+  display: flex;
+}
+
+.logo-wrapper .logout {
+  grid-column: 2;
+  display: flex;
+  justify-self: flex-end;
+  align-self: center;
+  width: 120px;
+}
+
+.logo-wrapper .logout button {
+  background: none;
+  border: none;
+  border-radius: none;
+  color: #242C34;
+  box-shadow: none;
+  font-size: 0.9rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-right: 40px;
 }
 
 .content-title {
@@ -26,13 +52,13 @@
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 24px;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
 .parcel-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   margin: 30px;
   grid-column-gap: 40px;
   grid-row-gap: 10px;
@@ -42,5 +68,7 @@
   margin-top: 40px;
   height: 67px;
   background-image: url('../../imgs/bike-flat-road-illustration.svg');
+  background-repeat: repeat-x;
+  background-position: bottom;
 }
 

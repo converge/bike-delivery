@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.css';
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
-
+import { getUserId } from '../../services/auth'
 class ParcelItem extends Component {
 
   state = {
@@ -12,7 +12,7 @@ class ParcelItem extends Component {
   componentDidMount = async () => {
     const response = await api.get('/biker/list_parcels', {
       params: {
-        userId: 2 // TODO: get it from session/JWT
+        userId: getUserId()
       }
     })
 
@@ -39,10 +39,10 @@ class ParcelItem extends Component {
                 </span>
                 <span className="parcel-address">
                   <span className="parcel-origin">
-                    <b>Origin: </b>{`${row.origin.slice(0, 35)} ... `}
+                    <b>Origin: </b>{row.origin}
                   </span>
                   <span className="parcel-destination">
-                    <b>Destination:</b> {`${row.destination.slice(0, 29)} ... `}
+                    <b>Destination:</b> {row.destination}
                   </span>
                 </span>
               </div>

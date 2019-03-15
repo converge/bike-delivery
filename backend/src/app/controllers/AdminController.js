@@ -84,12 +84,49 @@ class AdminController {
     }
   }
 
+  /*
+   * List all available bikers
+   */
   async listAllBikers(req, res) {
     try {
       const users = await User.findAll({ where: {
         is_admin: 0
       }})
       return res.json(users)
+    } catch (err) {
+      return res.json(err)
+    }
+  }
+
+  /*
+   * Count the amount of parcels by status
+   */
+  async generalStatus(req, res) {
+    try {
+      const waiting = await Parcel.count({ where: {
+        status: 'waiting'
+      }})
+
+      const assigned = await Parcel.count({ where: {
+        status: 'assigned'
+      }})
+
+      const pickedup = await Parcel.count({ where: {
+        status: 'pickedup'
+      }})
+
+      const delivered = await Parcel.count({ where: {
+        status: 'delivered'
+      }})
+
+      console.log(waiting)
+      const result = {
+        waiting,
+        assigned,
+        pickedup,
+        delivered
+      }
+      return res.json(result)
     } catch (err) {
       return res.json(err)
     }

@@ -21,7 +21,6 @@ class AppController {
     // Instantiate routes
     this.express.use(require('./routes'))
   }
-
 }
 
 module.exports = new AppController().express

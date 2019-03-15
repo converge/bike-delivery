@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import api from '../../services/api'
+import { connect } from 'react-redux'
+import { updateWaiting, updateAssigned, updatePickedup, updateDelivered } from '../../store/actions/statusActions'
+import { getUserId } from "../../services/auth";
 
 class BikeParcelDetail extends Component {
 
@@ -13,7 +16,7 @@ class BikeParcelDetail extends Component {
     const response = await api.get('/biker/parcel_detail', {
       params: {
         parcelId: params.id,
-        userId: 2 // TODO: get it dynamically
+        userId: getUserId()
       }
     })
     if (response.status === 200) {
@@ -29,7 +32,7 @@ class BikeParcelDetail extends Component {
     const response = await api.put('/biker/start_delivery', {
       params: {
         parcelId: params.id,
-        userId: 2 // TODO: get it dynamically
+        userId: getUserId()
       }
     })
     if (response.status === 200) {
@@ -40,6 +43,7 @@ class BikeParcelDetail extends Component {
           status: 'pickedup'
         },
       }))
+      this.props.updatePickedup(1)
     }
   }
 
@@ -48,7 +52,7 @@ class BikeParcelDetail extends Component {
     const response = await api.put('/biker/end_delivery', {
       params: {
         parcelId: params.id,
-        userId: 2 // TODO: get it dynamically
+        userId: getUserId()
       }
     })
     if (response.status === 200) {
@@ -59,6 +63,8 @@ class BikeParcelDetail extends Component {
           status: 'delivered'
         },
       }))
+      this.props.updateDelivered(1)
+      this.props.updatePickedup(-1)
     }
   }
 
@@ -89,4 +95,22 @@ class BikeParcelDetail extends Component {
   }
 }
 
-export default BikeParcelDetail
+const mapStateToProps = (store) => {
+  return {
+    waiting: store.status.waitingStatus,
+    assigned: store.status.assignedStatus,
+    pickedup: store.status.pickedupStatus,
+    delivered: store.status.deliveredStatus
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateWaiting: (value) => dispatch(updateWaiting(value)),
+    updateAssigned: (value) => dispatch(updateAssigned(value)),
+    updatePickedup: (value) => dispatch(updatePickedup(value)),
+    updateDelivered: (value) => dispatch(updateDelivered(value))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BikeParcelDetail)

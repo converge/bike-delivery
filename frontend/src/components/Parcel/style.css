@@ -11,7 +11,7 @@
   width: 100%;
   height: 51px;
   background-color: #FECD1A;
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: 700;
   color: white;
   display: flex;
@@ -26,7 +26,7 @@
 .detail-box {
   margin-top: 30px;
   width: 100%;
-  height: 295px;
+  height: 340px;
   border-radius: 20px;
   display: grid;
   grid-template-rows: 40px 20px 1fr;
@@ -38,22 +38,34 @@
 }
 
 .parcel-item {
-	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+
+.parcel-address {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
 }
 
 .parcel-assigned-to {
   font-weight: 400;
-  font-size: 10px;
+  font-size: 0.8rem;
 }
 
 .parcel-detailed-info {
-  font-size: 14px;
+  font-size: 0.9rem;
   align-self: start;
   justify-self: start;
   margin-left: 20px;
   margin-right: 20px;
   text-align: left;
   line-height: 2;
+  overflow: hidden;
+  white-space: wrap; 
 }
 
 .parcel-detail-wrapper {
@@ -62,7 +74,7 @@
 }
 
 .parcel-detail-buttons button {
-  font-size: 13px;
+  font-size: 0.9rem;
   width: 170px;
   height: 32px;
 }

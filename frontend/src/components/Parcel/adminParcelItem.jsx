@@ -16,12 +16,12 @@ class ParcelItem extends Component {
                   </Link>
                 </span>
                 <span className="parcel-address">
-                  <span className="parcel-origin">
-                    <b>Origin: </b>{`${row.origin.slice(0, 35)} ... `}
+                 <span className="parcel-origin">
+                    <b>Origin: </b>{row.origin}
                   </span>
                   <span className="parcel-destination">
-                    <b>Destination:</b> {`${row.destination.slice(0, 29)} ... `}
-                  </span>
+                    <b>Destination:</b> {row.destination}
+                  </span> 
                 </span>
               </div>
             )

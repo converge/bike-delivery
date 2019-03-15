@@ -28,6 +28,19 @@
   border-bottom: 1px solid #BCBCBC;
 }
 
+.form-sending {
+  padding-top: 10px;
+}
+
+.field-validation {
+  padding-top: 10px;
+  color: #D40032;
+}
+
+.form-sending.error {
+  color: #D40032;
+}
+
 /*
   * Responsive
   */
