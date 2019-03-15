@@ -5,7 +5,7 @@ import BikeParcelDetail from '../Parcel/bikerParcelDetail'
 import { Switch, Route, Link } from 'react-router-dom'
 import { logout } from '../../services/auth'
 import { connect } from 'react-redux'
-import { updateWaiting, updateAssigned, updatePickedup, updateDelivered } from '../../store/actions/statusActions'
+import { updateWaiting, updateAssigned, updatePickedup, updateDelivered, cleanStates } from '../../store/actions/statusActions'
 import api from '../../services/api'
 import { getUserId } from "../../services/auth";
 import './style.css';
@@ -14,6 +14,8 @@ import './style.css';
 class BikerApp extends Component {
 
   handleLogout = () => {
+    // clean Redux states before logout
+    this.props.cleanStates()
     // remove JWT token
     logout()
     // redirect to login page
@@ -115,7 +117,8 @@ const mapDispatchToProps = (dispatch) => {
     updateWaiting: (value) => dispatch(updateWaiting(value)),
     updateAssigned: (value) => dispatch(updateAssigned(value)),
     updatePickedup: (value) => dispatch(updatePickedup(value)),
-    updateDelivered: (value) => dispatch(updateDelivered(value))
+    updateDelivered: (value) => dispatch(updateDelivered(value)),
+    cleanStates: (value) => dispatch(cleanStates(value))
   }
 }
 

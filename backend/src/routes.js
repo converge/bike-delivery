@@ -29,8 +29,6 @@ routes.get('/biker/general_status', BikerController.generalStatus)
 routes.post('/auth/login', async (req, res) => {
   // get user/passwd
   const { email, password } = req.body
-  console.log(email)
-  console.log(password)
   // find user
   const user = await User.findOne({ where: {
     email: email

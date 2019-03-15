@@ -14,7 +14,9 @@ class AppController {
   middlewares() {
     // JSON
     this.express.use(express.json())
-    this.express.use(cors())
+    this.express.use(cors({
+      credentials: true, origin: true
+    }))
   }
 
   routes() {

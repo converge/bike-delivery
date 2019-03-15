@@ -27,6 +27,14 @@ const statusReducer = (state = initialState, action) => {
         ...state,
         deliveredStatus: (state.deliveredStatus + action.deliveredStatus)
       }
+    case 'CLEAN_STATES':
+      return {
+        ...state,
+        deliveredStatus: 0,
+        pickedupStatus: 0,
+        assignedStatus: 0,
+        waitingStatus: 0
+      }
     default:
       return state
   }

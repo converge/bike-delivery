@@ -119,7 +119,6 @@ class AdminController {
         status: 'delivered'
       }})
 
-      console.log(waiting)
       const result = {
         waiting,
         assigned,

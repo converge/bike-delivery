@@ -6,7 +6,7 @@ import AdminParcelDetail from '../Parcel/adminParcelDetail'
 import api from '../../services/api'
 import { logout } from '../../services/auth'
 import { connect } from 'react-redux'
-import { updateWaiting, updateAssigned, updatePickedup, updateDelivered } from '../../store/actions/statusActions'
+import { updateWaiting, updateAssigned, updatePickedup, updateDelivered, cleanStates } from '../../store/actions/statusActions'
 import './style.css'
 
 class Dashboard extends Component {
@@ -36,17 +36,12 @@ class Dashboard extends Component {
   }
 
   handleLogout = () => {
+    // clean Redux states before logout
+    this.props.cleanStates()
     // remove JWT token
     logout()
     // redirect to login page
     this.props.history.push("/auth/login")
-  }
-
-  callRedux = () => {
-    this.props.updateWaiting(-1)
-    this.props.updateAssigned(-1)
-    this.props.updatePickedup(-1)
-    this.props.updateDelivered(-1)
   }
 
   render() {
@@ -120,7 +115,8 @@ const mapDispatchToProps = (dispatch) => {
     updateWaiting: (value) => dispatch(updateWaiting(value)),
     updateAssigned: (value) => dispatch(updateAssigned(value)),
     updatePickedup: (value) => dispatch(updatePickedup(value)),
-    updateDelivered: (value) => dispatch(updateDelivered(value))
+    updateDelivered: (value) => dispatch(updateDelivered(value)),
+    cleanStates: (value) => dispatch(cleanStates(value))
   }
 }
 

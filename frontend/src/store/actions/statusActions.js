@@ -18,3 +18,7 @@ export const updateDelivered = (value) => ({
   type: 'UPDATE_DELIVERED',
   deliveredStatus: value
 })
+
+export const cleanStates = () => ({
+  type: 'CLEAN_STATES',
+})
