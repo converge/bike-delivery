@@ -2,20 +2,13 @@
 
 ### Install
 
-Create Database
-npx sequelize db:migrate
+## Initiate Node Server, React App and PostgresSQL Database
 
-Destroy Database
-npx sequelize db:migrate:undo:all
+1. ```docker-compose -f docker-compose.yml up```
 
-Create/Delete Random users + admin
-api_base_url/create_users
-api_base_url/delete_users
+## Create Database (migration)
 
+2. ```npx sequelize db:migrate:undo:all ; npx sequelize db:migrate```
 
-Create/Delete Random Parcels
-npx sequelize db:seed:all
-npx sequelize db:seed:undo:all
-
-save it for later: (docker)
-npx sequelize db:migrate:undo:all;npx sequelize db:migrate;nodemon src/server.js
+## Populate Database
+3. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```

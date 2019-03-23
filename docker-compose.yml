@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  # PostgreSQL
+  postgres:
+    container_name: bike_delivery-postgres
+    image: postgres:11-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'docker'
+      POSTGRES_PASSWORD: 'docker'
+      POSTGRES_DB: 'bike_delivery'
+  # Backend
+  backend:
+    container_name: bike_delivery-backend
+    build: ./backend
+    expose:
+      - 3001
+    environment:
+      API_HOST: localhost
+      API_SERVER_PORT: 3001
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app/backend
+  # Frontend
+  frontend:
+    container_name: bike_delivery-frontend
+    build: ./frontend
+    environment:
+      - REACT_APP_PORT=3000
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app/frontend
+    links:
+      - backend
+    command: npm start
+
