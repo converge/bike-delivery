@@ -27,7 +27,7 @@ class ParcelItem extends Component {
     return (
       <div>
         <div className="parcel-wrapper">
-          {this.state.parcels.map(row => {
+          {(this.state.parcels.length > 0) && this.state.parcels.map(row => {
             return (
 
               <div key={row.id} className={`parcel-item ${row.status}`}>

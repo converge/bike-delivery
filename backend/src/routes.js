@@ -30,20 +30,24 @@ routes.post('/auth/login', async (req, res) => {
   // get user/passwd
   const { email, password } = req.body
   // find user
-  const user = await User.findOne({ where: {
-    email: email
-  }})
-  if (!user) {
-    return res.status(401).json({ message: 'User not found' })
+  try {
+    const user = await User.findOne({ where: {
+      email: email
+    }})
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' })
+    }
+    // compare password hash
+    if (!await user.checkPassword(password)) {
+      return res.status(401).json({ message: 'Passoword incorrect' })
+    }
+    return res.json({
+      user,
+      token: user.generateToken()
+    })
+  } catch (err) {
+    return res.json({ message: err })
   }
-  // compare password hash
-  if (!await user.checkPassword(password)) {
-    return res.status(401).json({ message: 'Passoword incorrect' })
-  }
-  return res.json({
-    user,
-    token: user.generateToken()
-  })
 })
 
 routes.get('/dashboard', (req, res) => {
