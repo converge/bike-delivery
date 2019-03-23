@@ -2,13 +2,13 @@
 
 ### Install
 
-## Initiate Node Server, React App and PostgresSQL Database
+#### Initiate Node Server, React App and PostgresSQL Database
 
 1. ```docker-compose -f docker-compose.yml up```
 
-## Create Database (migration)
+#### Create Database (migration)
 
 2. ```npx sequelize db:migrate:undo:all ; npx sequelize db:migrate```
 
-## Populate Database
+#### Populate Database
 3. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```
