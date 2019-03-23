@@ -12,3 +12,7 @@
 
 #### Populate Database
 3. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```
+
+#### Run it
+
+4. http://localhost:3000
