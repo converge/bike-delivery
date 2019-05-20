@@ -23,7 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.9",
     "pg": "^7.11.0",
-    "sequelize": "^4.44.0"
+    "sequelize": "^5.8.6"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
